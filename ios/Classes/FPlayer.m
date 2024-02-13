@@ -560,6 +560,10 @@ static int renderType = 0;
         double volume = [argsMap[@"volume"] doubleValue];
         [_ijkMediaPlayer setPlaybackVolume:(float)volume];
         result(nil);
+    } else if ([@"selectTrack" isEqualToString:call.method]) {
+        int index = [argsMap[@"index"] intValue];
+        [_ijkMediaPlayer selectTrack:index];
+        result(nil);
     } else if ([@"seekTo" isEqualToString:call.method]) {
         long pos = [argsMap[@"msec"] longValue];
         if (_state == completed)

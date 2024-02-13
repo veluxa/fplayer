@@ -459,6 +459,10 @@ public class FPlayer implements MethodChannel.MethodCallHandler, IjkEventListene
             float vol = volume != null ? volume.floatValue() : 1.0f;
             mIjkMediaPlayer.setVolume(vol, vol);
             result.success(null);
+        }  else if (call.method.equals("selectTrack")) {
+            final int index = call.argument("index");
+            mIjkMediaPlayer.selectTrack(index);
+            result.success(null);
         } else if (call.method.equals("seekTo")) {
             final Integer msec = call.argument("msec");
             if (mState == completed)

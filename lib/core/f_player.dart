@@ -337,6 +337,19 @@ class FPlayer extends ChangeNotifier implements ValueListenable<FValue> {
     }
   }
 
+  Future<void> selectTrack(int index) async {
+    if (index < 0) {
+      FLog.e("$this invoke seekTo invalid index:$index");
+      return Future.error(
+          ArgumentError.value(index, "selectTrack invalid index"));
+    } else {
+      await _nativeSetup.future;
+      FLog.i("$this invoke selectTrack $index");
+      return _channel
+          .invokeMethod("selectTrack", <String, dynamic>{"index": index});
+    }
+  }
+
   /// enter full screen mode, set [FValue.fullScreen] to true
   void enterFullScreen() {
     FLog.i("$this enterFullScreen");
