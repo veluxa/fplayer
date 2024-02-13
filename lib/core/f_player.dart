@@ -350,6 +350,12 @@ class FPlayer extends ChangeNotifier implements ValueListenable<FValue> {
     }
   }
 
+  Future<List<dynamic>?> getTrackInfo() async {
+    await _nativeSetup.future;
+    FLog.i("$this getTrackInfo");
+    return _channel.invokeMethod("getTrackInfo");
+  }
+
   /// enter full screen mode, set [FValue.fullScreen] to true
   void enterFullScreen() {
     FLog.i("$this enterFullScreen");

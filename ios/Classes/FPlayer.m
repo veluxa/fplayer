@@ -584,6 +584,9 @@ static int renderType = 0;
     } else if ([@"snapshot" isEqualToString:call.method]) {
         [self takeSnapshot];
         result(nil);
+    } else if ([@"getTrackInfo" isEqualToString:call.method]) {
+        NSDictionary *infos = [_ijkMediaPlayer getTrackInfo];
+        result(@(infos));
     } else {
         result(FlutterMethodNotImplemented);
     }

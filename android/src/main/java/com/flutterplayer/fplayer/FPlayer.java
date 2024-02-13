@@ -39,6 +39,7 @@ import tv.danmaku.ijk.media.player.IMediaPlayer;
 import tv.danmaku.ijk.media.player.IjkEventListener;
 import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 import tv.danmaku.ijk.media.player.misc.IMediaDataSource;
+import tv.danmaku.ijk.media.player.misc.IjkTrackInfo;
 
 import java.io.*;
 import java.util.HashMap;
@@ -484,6 +485,9 @@ public class FPlayer implements MethodChannel.MethodCallHandler, IjkEventListene
                 mMethodChannel.invokeMethod("_onSnapshot", "not support");
             }
             result.success(null);
+        } else if (call.method.equals("getTrackInfo")) {
+            IjkTrackInfo[] infos = mIjkMediaPlayer.getTrackInfo()
+            result.success(infos);
         } else {
             result.notImplemented();
         }
