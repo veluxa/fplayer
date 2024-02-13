@@ -486,7 +486,7 @@ public class FPlayer implements MethodChannel.MethodCallHandler, IjkEventListene
             }
             result.success(null);
         } else if (call.method.equals("getTrackInfo")) {
-            IjkTrackInfo[] infos = mIjkMediaPlayer.getTrackInfo()
+            IjkTrackInfo[] infos = mIjkMediaPlayer.getTrackInfo();
             result.success(infos);
         } else {
             result.notImplemented();
