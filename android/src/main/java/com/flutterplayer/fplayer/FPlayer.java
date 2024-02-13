@@ -497,7 +497,6 @@ public class FPlayer implements MethodChannel.MethodCallHandler, IjkEventListene
                 
                 infoMap.put("trackType", trackInfo.getTrackType());
                 infoMap.put("language", trackInfo.getLanguage());
-                infoMap.put("title", trackInfo.getTitle());
 
                 IMediaFormat format = trackInfo.getFormat();
                 if (format != null) {
@@ -510,8 +509,6 @@ public class FPlayer implements MethodChannel.MethodCallHandler, IjkEventListene
                     infoMap.put("height", height);
                 }
 
-                infoMap.put("codec", trackInfo.getCodecName());
-                infoMap.put("bitrate", trackInfo.getBitrate());
                 infoMap.put("row", trackInfo.toString());
 
                 serializedInfos.add(infoMap);
