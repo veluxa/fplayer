@@ -40,6 +40,7 @@ import tv.danmaku.ijk.media.player.IjkEventListener;
 import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 import tv.danmaku.ijk.media.player.misc.IMediaDataSource;
 import tv.danmaku.ijk.media.player.misc.IjkTrackInfo;
+import tv.danmaku.ijk.media.player.misc.IMediaFormat;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -496,11 +497,26 @@ public class FPlayer implements MethodChannel.MethodCallHandler, IjkEventListene
                 
                 infoMap.put("trackType", trackInfo.getTrackType());
                 infoMap.put("language", trackInfo.getLanguage());
+                infoMap.put("title", trackInfo.getTitle());
+
+                IMediaFormat format = trackInfo.getFormat();
+                if (format != null) {
+                    String mime = format.getString(IMediaFormat.KEY_MIME);
+                    int width = format.getInteger(IMediaFormat.KEY_WIDTH);
+                    int height = format.getInteger(IMediaFormat.KEY_HEIGHT);
+                    
+                    infoMap.put("mime", mime);
+                    infoMap.put("width", width);
+                    infoMap.put("height", height);
+                }
+
+                infoMap.put("codec", trackInfo.getCodecName());
+                infoMap.put("bitrate", trackInfo.getBitrate());
                 infoMap.put("row", trackInfo.toString());
 
-                serializedInfos.add(serializedInfos);
+                serializedInfos.add(infoMap);
             }
-            result.success(infos);
+            result.success(serializedInfos);
         } else {
             result.notImplemented();
         }
