@@ -486,7 +486,18 @@ public class FPlayer implements MethodChannel.MethodCallHandler, IjkEventListene
             }
             result.success(null);
         } else if (call.method.equals("getTrackInfo")) {
-            IjkTrackInfo[] infos = mIjkMediaPlayer.getTrackInfo();
+            IjkTrackInfo[] trackInfos = mIjkMediaPlayer.getTrackInfo();
+
+            List<Map<String, Object>> serializedInfos = new ArrayList<>();
+            for (IjkTrackInfo trackInfo : trackInfos) {
+                Map<String, Object> infoMap = new HashMap<>();
+                
+                infoMap.put("trackType", trackInfo.getTrackType());
+                infoMap.put("language", trackInfo.getLanguage());
+                infoMap.put("row", trackInfo.toString());
+
+                serializedInfos.add(serializedInfos);
+            }
             result.success(infos);
         } else {
             result.notImplemented();
